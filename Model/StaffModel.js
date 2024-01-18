@@ -10,19 +10,19 @@ const staffSchema = new mongoose.Schema({
         type: String,
         index: true,
         maxLength: 255,
-        required:[true,'staffId is required']
+        // required:[true,'staffId is required']
     },
     firstName: {
         type: String,
         index: true,
-        minLength:2,
+        // minLength:2,
         maxLength: 255,
-        required:[true,' FirstName is required']
+        // required:[true,' FirstName is required']
     },
     lastName: {
         type: String,
         index: true,
-        minLength:2,
+        // minLength:2,
         maxLength: 255,
         required:[true,'LastName is required']
     },
