@@ -65,6 +65,7 @@ validates([
       .notEmpty()
       .withMessage("Staff ID is required")
       .escape()
+      .optional()
       .isLength({ min:1, max: 255 })
       .withMessage("Staff ID must be at most 255 characters"),
 
@@ -93,30 +94,35 @@ validates([
       .trim()
       .escape()
       .isLength({ max: 50 })
+      .optional()
       .withMessage("Specialization must be 50 characters"),
 
   
     body("isDoctor")
       .isBoolean()
       .escape()
+      .optional()
       .withMessage(" isDoctor is Only accepted boolean value"),
 
   
     body("age")
       .isInt({ min: 1, max: 100 })
       .escape()
+      .optional()
       .withMessage("Age must be between 1 and 100 "),
-
+     
     
     body("birthday")
       .isISO8601()
       .toDate()
+      .optional()
       .withMessage("Invalid date format please use a ISO8601 format with string"),
 
     
     body("gender")
       .trim()
       .escape()
+      .optional()
       .isLength({min:3, max: 10 })
       .withMessage("Gender must be min 3 characters"),
 
@@ -134,13 +140,14 @@ validates([
     body("countryCode")
       .trim()
       .escape()
+      .optional()
       .isLength({min:2, max: 10 })
       .withMessage("Country code must be at most 10 characters"),
 
    
     body("whatsapp")
       .trim()
-      
+      .optional()
       .isLength({ max: 255 })
       .withMessage("WhatsApp must be at most 255 characters"),
 
@@ -149,6 +156,7 @@ validates([
       .trim()
       .escape()
       .isEmail()
+      .optional()
       .withMessage("Invalid email format")
       .isLength({ max: 100 })
       .withMessage("Email must be at most 100 characters")
@@ -157,6 +165,7 @@ validates([
     body("address.house")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 255 })
       .withMessage("House must be at most 255 characters"),
 
@@ -164,6 +173,7 @@ validates([
     body("address.street")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 1000 })
       .withMessage("Street must be at most 1000 characters"),
 
@@ -171,6 +181,7 @@ validates([
     body("address.landmarks")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 1000 })
       .withMessage("Landmarks must be at most 1000 characters"),
 
@@ -178,6 +189,7 @@ validates([
     body("address.city")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 500 })
       .withMessage("City must be at most 500 characters"),
 
@@ -185,6 +197,7 @@ validates([
     body("address.pincode")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 50 })
       .withMessage("Pincode must be at most 50 characters"),
 
@@ -192,6 +205,7 @@ validates([
     body("documentType")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 100 })
       .withMessage("Document type must be at most 100 characters"),
 
@@ -199,6 +213,7 @@ validates([
     body("documentNumber")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 100 })
       .withMessage("Document number must be at most 100 characters"),
 
@@ -206,6 +221,7 @@ validates([
     body("upiId")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 100 })
       .withMessage("UPI ID must be at most 100 characters"),
 
@@ -213,6 +229,7 @@ validates([
     body("bankName")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 100 })
       .withMessage("Bank name must be at most 100 characters"),
 
@@ -220,6 +237,7 @@ validates([
     body("accountName")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 255 })
       .withMessage("Account name must be at most 255 characters"),
 
@@ -227,6 +245,7 @@ validates([
     body("accountNo")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 100 })
       .withMessage("Account number must be at most 100 characters"),
 
@@ -234,22 +253,25 @@ validates([
     body("ifsc")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 50 })
       .withMessage("IFSC must be at most 50 characters"),
 
    
-    body("isAdmin").isBoolean().withMessage(" isAdmin only accept boolean value"),
+    body("isAdmin").isBoolean() .optional().withMessage(" isAdmin only accept boolean value"),
 
     
     body("created.on")
       .isISO8601()
       .toDate()
+      .optional()
       .withMessage("Invalid date format please write in string format with ISO 8601 format  "),
 
     
     body("created.by.id")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 255 })
       .withMessage("Created by ID must be at most 255 characters"),
 
@@ -257,6 +279,7 @@ validates([
     body("created.by.name")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 255 })
       .withMessage("Created by name must be at most 255 characters"),
 
@@ -264,12 +287,14 @@ validates([
     body("modified.on")
       .isISO8601()
       .toDate()
+      .optional()
       .withMessage("Invalid date format for modified.on"),
 
   
     body("modified.by.id")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 255 })
       .withMessage("Invalid date format please write in string format with ISO 8601 format"),
 
@@ -277,28 +302,33 @@ validates([
     body("modified.by.name")
       .trim()
       .escape()
+      .optional()
       .isLength({ max: 255 })
       .withMessage("Modified by name must be at most 255 characters"),
 
 
     body("profilePic").
-    trim().
+    trim()
+    .optional().
     escape(),
-
+   
     body("documents").
     isArray()
     .escape()
+    .optional()
     .withMessage("Documents  type must be array "),
 
     body("deleted")
     .isBoolean()
     .escape()
+    .optional()
     .withMessage("Deleted value only return  boolean "),
 
 
     body("user")
     .isMongoId()
     .escape()
+    .optional()
     .withMessage("Please write a valid user Id like mongoId"),
   ]),
   async (req, res) => {
